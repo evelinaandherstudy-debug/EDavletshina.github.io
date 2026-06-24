@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Проект — Evelina Davletshina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --white: #FFFFFF;
+    --gray-light: #E8E8E8;
+    --gray-mid: #C0C0C0;
+    --gray-text: #666666;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 64px;
+    background: var(--white);
+    z-index: 100;
+  }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--gray-text);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--black); }
+
+  .back-link svg { transition: transform 0.2s; }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .topbar-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── CONTENT ── */
+  .page {
+    padding-top: 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ── PROJECT HEADER ── */
+  .project-header {
+    padding: 80px 64px 56px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .project-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+
+  .project-year-badge {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+  }
+
+  .project-medium {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: var(--gray-text);
+    letter-spacing: 0.06em;
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+
+  .project-title em {
+    font-style: italic;
+  }
+
+  .project-tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-text);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  /* ── MEDIA SECTION ── */
+  .media-section {
+    padding: 0 64px;
+  }
+
+  /* Главное медиа — полная ширина */
+  .media-hero {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--gray-light);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .media-hero img,
+  .media-hero video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
+  /* Сетка дополнительных медиа */
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  /* Для одного файла — полная ширина */
+  .media-grid.single { grid-template-columns: 1fr; }
+
+  /* Для трёх файлов: первый на всю ширину */
+  .media-grid .media-item:first-child:nth-last-child(3),
+  .media-grid .media-item:first-child:nth-last-child(3) ~ .media-item:nth-child(2) {
+    /* оставляем 2-колонку */
+  }
+  .media-grid .media-item:first-child:nth-last-child(odd) { grid-column: 1 / -1; }
+
+  .media-item {
+    aspect-ratio: 4/3;
+    background: var(--gray-light);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-item img,
+  .media-item video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
+  /* Плейсхолдер */
+  .media-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px; color: var(--gray-mid);
+  }
+
+  .media-placeholder svg { opacity: 0.35; }
+
+  .media-placeholder-text {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+  }
+
+  /* ── DESCRIPTION ── */
+  .description-section {
+    padding: 80px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    border-top: 1px solid var(--gray-light);
+    align-items: start;
+  }
+
+  .desc-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: 24px;
+  }
+
+  .desc-text {
+    font-size: 0.92rem;
+    line-height: 1.95;
+    color: var(--gray-text);
+    font-weight: 300;
+  }
+
+  .desc-text p + p { margin-top: 20px; }
+
+  .desc-details { display: flex; flex-direction: column; gap: 28px; }
+
+  .detail-item {}
+
+  .detail-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    margin-bottom: 6px;
+  }
+
+  .detail-value {
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER NAV ── */
+  .project-footer {
+    border-top: 1px solid var(--gray-light);
+    padding: 40px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-back {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--black);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+
+  .footer-back:hover { opacity: 0.45; }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--gray-text);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .topbar { padding: 0 24px; }
+    .project-header { padding: 48px 24px 40px; }
+    .media-section { padding: 0 24px; }
+    .media-grid { grid-template-columns: 1fr; }
+    .media-grid .media-item:first-child:nth-last-child(odd) { grid-column: 1; }
+    .description-section { padding: 56px 24px; grid-template-columns: 1fr; gap: 48px; }
+    .project-footer { padding: 32px 24px; flex-direction: column; gap: 20px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<header class="topbar">
+  <a href="index.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M10 3L5 8L10 13"/>
+    </svg>
+    Все проекты
+  </a>
+  <a href="index.html" class="topbar-name">Evelina Davletshina</a>
+</header>
+
+<div class="page">
+
+  <!-- ── PROJECT HEADER ── -->
+  <div class="project-header">
+    <div class="project-meta-line">
+      <!-- ✏️ год -->
+      <span class="project-year-badge">2026</span>
+      <!-- ✏️ медиум/техника -->
+      <span class="project-medium">Лазерная инсталляция</span>
+    </div>
+    <!-- ✏️ название -->
+    <h1 class="project-title">lol</h1>
+    <!-- ✏️ короткий подзаголовок/тезис (необязательно) -->
+    <p class="project-tagline">Свет как процесс, а не источник — исследование трансформации единого потока в множественные траектории.</p>
+  </div>
+
+  <!-- ── MEDIA ── -->
+  <div class="media-section">
+
+    <!-- Главное медиа (обложка проекта) -->
+    <div class="media-hero">
+      <!-- ✏️ ВСТАВЬТЕ главное изображение или видео: -->
+      <img src="media/Frame 12.png" alt="TRANSFORM">
+      <!-- <video src="main.mp4" autoplay muted loop playsinline></video> -->
+      <div class="media-placeholder" style="width:100%;height:100%">
+        <svg width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
+          <rect x="2" y="6" width="28" height="20" rx="1"/>
+          <circle cx="10" cy="13" r="2.5"/>
+          <path d="M2 22 L10 15 L17 21 L22 17 L30 24"/>
+        </svg>
+        
+      </div>
+    </div>
+
+    <!-- Дополнительные медиафайлы — добавляйте/удаляйте .media-item -->
+    <div class="media-grid">
+
+      <div class="media-item">
+        <img src="media/Frame 13.png" alt="...">
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
+            <rect x="2" y="6" width="28" height="20" rx="1"/>
+            <circle cx="10" cy="13" r="2.5"/>
+            <path d="M2 22 L10 15 L17 21 L22 17 L30 24"/>
+          </svg>
+          
+        </div>
+      </div>
+
+      <div class="media-item">
+        <img src="media/Frame 15.png" alt="...">
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
+            <rect x="2" y="6" width="28" height="20" rx="1"/>
+            <circle cx="10" cy="13" r="2.5"/>
+            <path d="M2 22 L10 15 L17 21 L22 17 L30 24"/>
+          </svg>
+          
+        </div>
+      </div>
+
+      <div class="media-item">
+       <img src="media/Frame 14.png" alt="...">
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
+            <rect x="2" y="6" width="28" height="20" rx="1"/>
+            <circle cx="10" cy="13" r="2.5"/>
+            <path d="M2 22 L10 15 L17 21 L22 17 L30 24"/>
+          </svg>
+          
+        </div>
+      </div>
+
+      <div class="media-item">
+        <img src="media/Frame 16.png" alt="...">
+        <div class="media-placeholder">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
+            <rect x="2" y="6" width="28" height="20" rx="1"/>
+            <circle cx="10" cy="13" r="2.5"/>
+            <path d="M2 22 L10 15 L17 21 L22 17 L30 24"/>
+          </svg>
+         
+        </div>
+      </div>
+
+    </div>
+    <!-- / media-grid — добавляйте .media-item сколько нужно -->
+
+  </div>
+
+  <!-- ── DESCRIPTION ── -->
+  <div class="description-section">
+
+    <!-- Левая колонка: полный текст -->
+    <div>
+      <div class="desc-label">О проекте</div>
+      <div class="desc-text">
+        <!-- ✏️ ЗАМЕНИТЕ на полное описание проекта -->
+        <p>Свет здесь не выступает как источник освещения, а становится процессом. Проходя через среду, единый поток утрачивает целостность и распадается на множественные траектории — видимые, но не фиксированные.</p>
+        <p>Среда формирует динамическое поле, отчего возникает вопрос: является ли трансформация отклонением от нормы — или это и есть единственное постоянство пространства?</p>
+      </div>
+    </div>
+
+    <!-- Правая колонка: детали -->
+    <div class="desc-details">
+      <div class="detail-item">
+        
+       
+         <div class="detail-label">Медиум</div>
+        <div class="detail-value">Лазерная инсталляция</div>
+      </div>
+
+     <div class="detail-label">Год</div>
+        <div class="detail-value">2026</div>
+      </div>
+      <div class="detail-item">
+        
+      <!--<div class="detail-item">
+        <div class="detail-label">Размеры / Продолжительность</div>
+        <!-- ✏️ -->
+         <!-- <div class="detail-value">Переменные / 12 мин</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Показ</div>
+        <!-- ✏️ -->
+        <!-- ✏️<div class="detail-value">[Место, город, год]</div>
+      </div>
+      <!-- ✏️ Добавляйте .detail-item по необходимости -->
+    </div>
+
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="project-footer">
+    <a href="index.html" class="footer-back">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M10 3L5 8L10 13"/>
+      </svg>
+      Вернуться к портфолио
+    </a>
+    <span class="footer-copy">© 2026 Evelina Davletshina</span>
+  </div>
+
+</div>
+</body>
+</html>
