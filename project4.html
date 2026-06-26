@@ -120,32 +120,16 @@
   /* ── MEDIA ── */
   .media-section { padding: 0 64px; }
 
-  .media-hero {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: var(--gray-light);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid var(--gray-light);
-  }
-
-  .media-hero img,
-  .media-hero video {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-  }
+  
 
   /* стало — 3 колонки для вертикальных видео */
+/* стало */
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
-  margin-top: 2px;
+  margin-top: 0;
 }
-
-.media-grid.single { grid-template-columns: 1fr; }
 
 .media-item {
   aspect-ratio: 9/16;
@@ -301,19 +285,19 @@
   <div class="media-section">
 
     <!-- главное фото/видео -->
-    <div class="media-hero">
+    
      
       <video src="media/1.mp4" autoplay muted loop playsinline></video> 
       <!-- плейсхолдер, если файл не найден -->
       <!-- удалите блок ниже когда вставите реальный файл -->
-    </div>
+    
 
     <!-- сетка дополнительных медиа — добавляйте/удаляйте .media-item -->
     <div class="media-grid">
 
       <div class="media-item">
         <video src="media/2.mp4" autoplay muted loop playsinline></video> 
-        <div class="media-placeholder">
+        
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
             <rect x="2" y="6" width="28" height="20" rx="1"/>
             <circle cx="10" cy="13" r="2.5"/>
@@ -321,11 +305,11 @@
           </svg>
           
         </div>
-      </div>
+      
 
       <div class="media-item">
         <video src="media/3.mp4" autoplay muted loop playsinline></video> 
-        <div class="media-placeholder">
+       
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
             <rect x="2" y="6" width="28" height="20" rx="1"/>
             <circle cx="10" cy="13" r="2.5"/>
@@ -333,11 +317,11 @@
           </svg>
           
         </div>
-      </div>
+      
 
       <div class="media-item">
         <video src="media/4.mp4" autoplay muted loop playsinline></video> 
-        <div class="media-placeholder">
+        
           <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="#aaa" stroke-width="1">
             <rect x="2" y="6" width="28" height="20" rx="1"/>
             <circle cx="10" cy="13" r="2.5"/>
@@ -345,7 +329,7 @@
           </svg>
           
         </div>
-      </div>
+      
 
     </div>
   </div>
@@ -356,7 +340,7 @@
     <div>
       <div class="desc-label">О проекте</div>
       <div class="desc-text">
-        <p></p>
+        <p>Экспериментирую не только в рамках личной практики, но и в сотрудничестве с заказчиками. Благодарна за доверие к моему видению и возможность воплощать нестандартные идеи.</p>
         <!-- ✏️ добавляйте абзацы -->
       </div>
     </div>
