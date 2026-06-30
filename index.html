@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -29,6 +29,7 @@
     color: var(--black);
     min-height: 100vh;
     display: flex;
+    overflow-x: hidden;
   }
  
   /* ══════════════════════════════
@@ -209,6 +210,7 @@
     padding: 56px 56px 56px 64px;
     border-right: 1px solid var(--gray-light);
     gap: 20px;
+    min-width: 0;
   }
  
   .hero-label {
@@ -244,6 +246,7 @@
     justify-content: center;
     padding: 56px 64px 56px 56px;
     gap: 20px;
+    min-width: 0;
   }
  
   .hero-bio-label {
@@ -259,6 +262,9 @@
     line-height: 1.85;
     color: var(--gray-text);
     font-weight: 300;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
  
   .hero-bio-text strong {
@@ -549,11 +555,11 @@
       border-bottom: 1px solid var(--gray-light);
     }
  
-    .hero-name { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+    .hero-name { font-size: clamp(1.2rem, 4.5vw, 1.6rem); }
  
-    .hero-role-big { font-size: clamp(2.6rem, 11vw, 4rem); }
+    .hero-role-big { font-size: clamp(1.9rem, 9vw, 2.8rem); overflow-wrap: break-word; }
  
-    .hero-bio-col { padding: 32px 20px 48px; }
+    .hero-bio-col { padding: 32px 20px 48px; width: 100%; box-sizing: border-box; }
  
     .section { padding: 56px 20px; }
  
@@ -626,7 +632,7 @@
       <span class="hero-label">Portfolio</span>
       <div>
         <div class="hero-name">Эвелина Давлетшина</div>
-        <div class="hero-role-big">Медиахудожница</div>
+        <div class="hero-role-big">Медиа&shy;художница</div>
       </div>
     </div>
  
@@ -764,12 +770,3 @@
  
 </body>
 </html>
- 
-
-
-
-
-
-
-
-
